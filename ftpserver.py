@@ -5,18 +5,22 @@ import logging
 
 from pyftpdlib.servers import FTPServer
 
-logging = logging.getLogger('pyftpdlib')
-logging.setLevel(logging.INFO)
+# 修改这里
+logger = logging.getLogger('pyftpdlib')
+logger.setLevel(logging.INFO) # 这里使用的是模块里的 logging.INFO
+
 ch = logging.StreamHandler()
 fh = logging.FileHandler(filename='pyftpdlib.log', encoding='utf-8')
 
 ch.setFormatter(LogFormatter())
 fh.setFormatter(LogFormatter())
-logging.root.addHandler(ch)
-logging.root.addHandler(fh)
+
+# 这里的 logger 就是你上面定义的
+logger.addHandler(ch)
+logger.addHandler(fh)
 
 authorizer = DummyAuthorizer()
-authorizer.add_user('user', '12345', 'd:/', perm='elero_admin')
+authorizer.add_user('user', '12345', 'd:/', perm='elradfmw')
 authorizer.add_anonymous('d:/')
 
 handler = FTPHandler
