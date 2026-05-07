@@ -8,3 +8,8 @@ logging.setLevel(logging.INFO)
 ch = logging.StreamHandler()
 fh = logging.FileHandler(filename='pyftpdlib.log', encoding='utf-8')
 
+ch.setFormatter(LogFormatter())
+fh.setFormatter(LogFormatter())
+logging.root.addHandler(ch)
+logging.root.addHandler(fh)
+
